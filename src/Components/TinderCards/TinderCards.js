@@ -8,31 +8,31 @@ import "./TinderCards.css";
 function TinderCards() {
     const [people, setPeople] = useState([
         {
-            name:'Whatever',
-            url: ''
+            name: 'Bob',
+            url: 'none'
         },
         {
-            name: 'whatever 2',
-            url: ""
+            name: 'greg',
+            url: "none"
         },
     ]);
 
     return (
         <div>
             <div className="tinderCards__cardContainer" >
-                {people.map((person) =>(
+                {people.map((person) => (
                     <TinderCard
-                    className="swipe"
-                    key={person.name}
-                    preventSwipe={["up", "down"]}>
+                        className="swipe"
+                        key={person.name}
+                        preventSwipe={["up", "down"]}>
                         <div
-                        style={{ backgroundImage: `url(${person.url})`}}
-                        className="card"
+                            style={{ backgroundImage: `url(${person.url})` }}
+                            className="card"
                         >
                             <h3>{person.name}</h3>
 
                         </div>
-                    
+
                     </TinderCard>
                 ))}
 
