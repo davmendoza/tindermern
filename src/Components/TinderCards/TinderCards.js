@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "./TinderCards.css";
 
+import axios from "./../../axios";
 
 
 
 function TinderCards() {
-    const [people, setPeople] = useState([
-        {
-            name: 'Bob',
-            url: 'none'
-        },
-        {
-            name: 'greg',
-            url: "none"
-        },
-    ]);
+    const [people, setPeople] = useState([]);
+
+    useEffect(() => {
+       async function fetchData() {
+           const req = await axios.get('/tinder/cards');
+
+           setPeople(req.data);
+       }
+
+       fetchData();
+    }, [])
 
     return (
         <div>
@@ -26,7 +28,7 @@ function TinderCards() {
                         key={person.name}
                         preventSwipe={["up", "down"]}>
                         <div
-                            style={{ backgroundImage: `url(${person.url})` }}
+                            style={{ backgroundImage: `url(${person.imgUrl})` }}
                             className="card"
                         >
                             <h3>{person.name}</h3>
